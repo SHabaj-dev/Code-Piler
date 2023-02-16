@@ -23,7 +23,9 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000)
+
+
+        }, 2500)
 //        setAnimation()
     }
 
@@ -34,10 +36,9 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun setAnimation(){
-//        val mAnimation = AnimationUtils.loadAnimation(this@SplashScreen, R.anim.image_animation)
-        val fadeIn = AlphaAnimation(1f, 0f)
-        fadeIn.duration = 2600
+
+        val fadeIn = AlphaAnimation(0f, 1f)
+        fadeIn.duration = 2000
         binding.ivSplashScreen.startAnimation(fadeIn)
-        binding.tvSplashScreen.startAnimation(fadeIn)
     }
 }

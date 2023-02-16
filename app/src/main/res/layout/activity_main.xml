@@ -48,11 +48,10 @@
 
                 <Spinner
                     android:id="@+id/my_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:textSize="16sp"
                     android:background="@drawable/spinner_shape"
-                    android:entries="@array/options_array"
-                    android:prompt="@string/choose_an_option"
                     android:textAlignment="center" />
             </LinearLayout>
 
