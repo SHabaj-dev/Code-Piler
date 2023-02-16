@@ -1,12 +1,14 @@
 package com.sbz.code_piler
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.sbz.code_piler.databinding.ActivityMainBinding
+import com.sbz.code_piler.utils.CodeHighlighter
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,11 +45,25 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
+                val text = binding.tvEditor.text.toString()
+                val ch = CodeHighlighter()
                 when (position) {
-                    0 -> binding.imageView.setImageResource(R.drawable.c_icn)
-                    1 -> binding.imageView.setImageResource(R.drawable.cpp_icn)
-                    2 -> binding.imageView.setImageResource(R.drawable.java_icn)
-                    3 -> binding.imageView.setImageResource(R.drawable.python_icn)
+                    0 -> {
+                        binding.imageView.setImageResource(R.drawable.c_icn)
+                        binding.tvEditor.setText(ch.highlightCCode(text))
+                    }
+                    1 -> {
+                        binding.imageView.setImageResource(R.drawable.cpp_icn)
+                        binding.tvEditor.setText(ch.highlightCPPCode(text))
+                    }
+                    2 -> {
+                        binding.imageView.setImageResource(R.drawable.java_icn)
+                        binding.tvEditor.setText(ch.highlightJavaCode(text))
+                    }
+                    3 -> {
+                        binding.imageView.setImageResource(R.drawable.python_icn)
+                        binding.tvEditor.setText(ch.highlightPythonCode(text))
+                    }
                 }
             }
 
@@ -56,4 +72,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
+
+
 }

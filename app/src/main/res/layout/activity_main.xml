@@ -82,10 +82,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:gravity="top"
-                    android:singleLine="true"
                     android:textColor="@color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <androidx.appcompat.widget.AppCompatButton
