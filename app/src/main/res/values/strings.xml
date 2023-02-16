@@ -12,4 +12,9 @@
 
 
     <string name="code_piler">Code-Piler</string>
+    <string name="write_your_code_here">Write Your Code Here</string>
+    <string name="select_language">Select Language</string>
+    <string name="run">RUN</string>
+    <string name="output">output</string>
+    <string name="image_for_language_selection">Image for language Selection</string>
 </resources>
