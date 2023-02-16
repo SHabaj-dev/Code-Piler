@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Code-Piler</string>
+
+
+    <string name="choose_an_option">Choose an option</string>
+    <string-array name="options_array">
+        <item>C</item>
+        <item>C++</item>
+        <item>Java</item>
+        <item>Python</item>
+    </string-array>
+
+
 </resources>
