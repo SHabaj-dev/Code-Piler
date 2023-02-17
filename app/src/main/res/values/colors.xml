@@ -12,4 +12,5 @@
 <!--    Custom Colors-->
     <color name="AppTheme">#354F7E</color>
     <color name="TextEditorColor">#292B2E</color>
+    <color name="buttonColor">#48A9F4</color>
 </resources>

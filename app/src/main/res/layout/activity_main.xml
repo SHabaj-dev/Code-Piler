@@ -82,22 +82,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:gravity="top"
-                    android:singleLine="true"
                     android:textColor="@color/white" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_run"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="@string/run"
                 android:textColor="@color/black"
                 android:gravity="center"
+                android:background="@drawable/button_background"
+                android:backgroundTint="@color/buttonColor"
+                android:elevation="20dp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
