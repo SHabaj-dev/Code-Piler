@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSpinnerItem() {
-        val itemList = resources.getStringArray(R.array.options_array)
+        val itemList = listOf<String>("C", "C++", "Java", "Python")
         val adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item, itemList
+            R.layout.spinner_item, itemList
         )
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.spinner_item)
         binding.mySpinner.adapter = adapter
 
 
