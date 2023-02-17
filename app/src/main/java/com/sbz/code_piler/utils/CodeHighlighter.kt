@@ -9,14 +9,14 @@ import java.util.regex.Pattern
 
 class CodeHighlighter {
 
-    fun highlightCCode(code: String): SpannableString {
+    fun highlightCode(code: String, keywords: List<String>): SpannableString {
         val spannableString = SpannableString(code)
-        for (keyword in C_KEYWORDS) {
+        for (keyword in keywords) {
             val pattern = Pattern.compile("\\b$keyword\\b")
             val matcher = pattern.matcher(spannableString)
             while (matcher.find()) {
                 spannableString.setSpan(
-                    ForegroundColorSpan(Color.BLACK),
+                    ForegroundColorSpan(Color.BLUE),
                     matcher.start(),
                     matcher.end(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -26,7 +26,7 @@ class CodeHighlighter {
         return spannableString
     }
 
-    fun highlightCPPCode(code: String): SpannableString {
+   /* fun highlightCPPCode(code: String): SpannableString {
         val spannableString = SpannableString(code)
         for (keyword in CPP_KEYWORDS) {
             val pattern = Pattern.compile("\\b$keyword\\b")
@@ -75,5 +75,5 @@ class CodeHighlighter {
             }
         }
         return spannableString
-    }
+    }*/
 }
