@@ -117,11 +117,17 @@ class MainActivity : AppCompatActivity() {
     """.trimIndent()
         val editTextValue = editText.setText(program).toString()
         val json = JSONObject()
-        json.put("lang", "java")
+        json.put("code", program)
+        json.put("language", "java")
         json.put("input", "")
-        json.put("code", code)
+
         print(json.toString())
-        val jsonString = "{\"code\":\"#include <iostream>\\r\\n\\r\\nint main() {\\r\\n    std::cout << \\\"Hello World!\\\";\\r\\n    return 0;\\r\\n}\",\"language\":\"cpp\",\"input\":\"\"}"
+        //val jsonString = "{\"code\":\"#include <iostream>\\r\\n\\r\\nint main() {\\r\\n    std::cout << \\\"Hello World!\\\";\\r\\n    return 0;\\r\\n}\",\"language\":\"cpp\",\"input\":\"\"}"
+       /* val jsonString = "{\"code\":\" #include <stdio.h>\\n\\n int main()\\n{\\n\\n\\n\\t printf(\\\"Hello World\\\");\\n\\n\\t return 0;\\n}\\n \",\"language\":\"c\",\"input\":\"\"}"*/
+        //public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}
+         val jsonString = "{\"code\":\" public class HelloWorld {\\n    public static void main(String[] args) {\\n        System.out.println(\\\"Hello, World!\\\");\\n    }\\n} \",\"language\":\"java\",\"input\":\"\"}"
+
+
 
 
         val client = OkHttpClient()
@@ -132,8 +138,10 @@ class MainActivity : AppCompatActivity() {
         val urlnew="https://api.codex.jaagrav.in"
         // Create a request body with the JSON data
         btn.setOnClickListener {
+            /*val requestBody =
+                RequestBody.create("application/json".toMediaTypeOrNull(), jsonString)*/
             val requestBody =
-                RequestBody.create("application/json".toMediaTypeOrNull(), jsonString)
+                RequestBody.create("application/json".toMediaTypeOrNull(), json.toString())
 
 
             val request: Request = Request.Builder()
