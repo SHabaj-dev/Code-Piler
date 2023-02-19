@@ -17,6 +17,8 @@ import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         setSpinnerItem()
         setImageResource()
+        test()
 
         //sending
         /*val client = OkHttpClient()
@@ -73,10 +76,10 @@ class MainActivity : AppCompatActivity() {
         /*val editTextValue = editText.text.toString()*/
 
 
-       /* val json = JSONObject()
-        json.put("lang", "java")
-        json.put("input", "")
-        json.put("code", editTextValue)*/
+        /* val json = JSONObject()
+         json.put("lang", "java")
+         json.put("input", "")
+         json.put("code", editTextValue)*/
 
 
         /*val dataModel=DataModel("java","",editTextValue)
@@ -90,14 +93,35 @@ class MainActivity : AppCompatActivity() {
                 "}";
 
         */
-        val program = "#include <iostream>\r\n\r\nint main() {\r\n    std::cout << \"Hello World!\";\r\n  return 0;\r\n}"
+        // val program = "#include <iostream>\r\n\r\nint main() {\r\n    std::cout << \"Hello World!\";\r\n  return 0;\r\n}"
+       //new
+
+        val lang = "java"
+        val code = """
+        public class HelloWorld {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+    """.trimIndent()
+
+        val data = JSONObject(mapOf("lang" to lang, "input" to "", "code" to code))
+
+
+        val program = """
+        public class HelloWorld {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+    """.trimIndent()
         val editTextValue = editText.setText(program).toString()
-         val json = JSONObject()
-        json.put("lang", "cpp")
+        val json = JSONObject()
+        json.put("lang", "java")
         json.put("input", "")
-        json.put("code", program)
-
-
+        json.put("code", code)
+        print(json.toString())
+        val jsonString = "{\"code\":\"#include <iostream>\\r\\n\\r\\nint main() {\\r\\n    std::cout << \\\"Hello World!\\\";\\r\\n    return 0;\\r\\n}\",\"language\":\"cpp\",\"input\":\"\"}"
 
 
         val client = OkHttpClient()
@@ -105,14 +129,15 @@ class MainActivity : AppCompatActivity() {
         //https://reqres.in/api/users
         val url = "https://reqres.in/api/users"
         val myurl = "http://127.0.0.1:5000/compile"
+        val urlnew="https://api.codex.jaagrav.in"
         // Create a request body with the JSON data
         btn.setOnClickListener {
             val requestBody =
-                RequestBody.create("application/json".toMediaTypeOrNull(), json.toString())
+                RequestBody.create("application/json".toMediaTypeOrNull(), jsonString)
 
 
             val request: Request = Request.Builder()
-                .url(myurl)
+                .url(urlnew)
                 .post(requestBody)
                 .build()
 
@@ -199,4 +224,60 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun new() {
+
+        val lang = "java"
+        val code = """
+        public class HelloWorld {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+    """.trimIndent()
+
+        val data = JSONObject(mapOf("lang" to lang, "input" to "", "code" to code))
+
+        val apiUrl = "http://127.0.0.1:5000/compile"
+        val url = URL(apiUrl)
+        val connection = url.openConnection() as HttpURLConnection
+
+        connection.requestMethod = "POST"
+        connection.setRequestProperty("Content-Type", "application/json")
+        connection.doOutput = true
+        val outputStream = connection.outputStream
+        outputStream.write(data.toString().toByteArray())
+        outputStream.flush()
+        outputStream.close()
+
+        val responseCode = connection.responseCode
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            // handle successful response
+           // Log.d("ashif",response.body!!.string())
+        } else {
+            // handle error response
+        }
+    }
+
+
+    fun test() {
+        val code = """
+        public class HelloWorld {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+    """.trimIndent()
+
+        val json = JSONObject(mapOf("program" to code))
+        println(json.toString())
+        Log.d("fuck", json.toString())
+    }
+
+
+
+
 }
+
+
+
+
