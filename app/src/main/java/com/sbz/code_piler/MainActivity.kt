@@ -140,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         binding.mySpinner.adapter = adapter
 
 
+
     }
 
     private fun setImageResource() {
@@ -155,19 +156,25 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         binding.imageView.setImageResource(R.drawable.c_icn)
+
+                       // binding.tvEditor.setText(ch.highlightCCode(text))
+                        selectedLanguage="c"
                         binding.tvEditor.setText(ch.highlightCode(text, C_KEYWORDS))
                     }
                     1 -> {
                         binding.imageView.setImageResource(R.drawable.cpp_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, CPP_KEYWORDS))
+                        selectedLanguage="cpp"
                     }
                     2 -> {
                         binding.imageView.setImageResource(R.drawable.java_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, JAVA_KEYWORDS))
+                        selectedLanguage="java"
                     }
                     3 -> {
                         binding.imageView.setImageResource(R.drawable.python_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, PYTHON_KEYWORDS))
+                        selectedLanguage="py"
                     }
                 }
 
