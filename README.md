@@ -1,6 +1,8 @@
 # Code-Piler
 Online Code Editor for Android
 
+- [Click here](https://github.com/SHabaj-dev/Code-Piler/blob/main/Code-Piler.apk) to Try out.
+
 ## Requirements
 - Android Emulator/Deivce
 - Android Studio
