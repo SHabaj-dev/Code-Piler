@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             getApiResponse()
+//            Toast.makeText(this, selectedLanguage, Toast.LENGTH_LONG).show()
         }
 
     }
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         val json = JSONObject()
         json.put("code", inputCode)
 
-        json.put("language", "java")
+        json.put("language", selectedLanguage)
         json.put("input", "")
         val client = OkHttpClient()
         Log.d("pt",inputCode+selectedLanguage)
@@ -127,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSpinnerItem() {
-        val itemList = listOf<String>("C", "C++", "Java", "Python")
+        val itemList = listOf("C", "C++", "Java", "Python")
         val adapter = ArrayAdapter(
             this,
             R.layout.spinner_item, itemList
@@ -152,8 +154,6 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         binding.imageView.setImageResource(R.drawable.c_icn)
-                        binding.tvEditor.setText(ch.highlightCCode(text))
-
                         binding.tvEditor.setText(ch.highlightCode(text, C_KEYWORDS))
                     }
                     1 -> {
@@ -169,6 +169,9 @@ class MainActivity : AppCompatActivity() {
                         binding.tvEditor.setText(ch.highlightCode(text, PYTHON_KEYWORDS))
                     }
                 }
+
+                languageIndex = parent?.getItemIdAtPosition(position).toString()
+                setLanguage(languageIndex)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
