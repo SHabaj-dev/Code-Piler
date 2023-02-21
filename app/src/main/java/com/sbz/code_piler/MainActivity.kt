@@ -1,15 +1,18 @@
 package com.sbz.code_piler
 
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
@@ -21,6 +24,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.IOException
 
+
 //import okio.ByteString.Companion.utf8
 
 
@@ -31,14 +35,11 @@ class MainActivity : AppCompatActivity() {
     private var selectedLanguage = "c"
     private lateinit var languageIndex: String
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil
             .setContentView(this, R.layout.activity_main)
         // editText = findViewById(R.id.tv_editor)
         btn = findViewById(R.id.btn_run)
-
         setSpinnerItem()
         setImageResource()
         //selectLanguageIndex()
