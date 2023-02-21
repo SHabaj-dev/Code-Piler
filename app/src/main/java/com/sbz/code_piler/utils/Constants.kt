@@ -1,5 +1,7 @@
 package com.sbz.code_piler
 
+const val BASE_URL="https://api.codex.jaagrav.in"
+
 val C_KEYWORDS = listOf(
     "auto", "break", "case", "char",
     "const", "continue", "default", "do",

@@ -4,10 +4,10 @@
 
     <string name="choose_an_option">Choose an option</string>
     <string-array name="options_array">
-        <item>C</item>
-        <item>C++</item>
-        <item>Java</item>
-        <item>Python</item>
+        <item>c</item>
+        <item>cpp</item>
+        <item>java</item>
+        <item>py</item>
     </string-array>
 
 
