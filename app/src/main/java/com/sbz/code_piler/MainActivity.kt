@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         val json = JSONObject()
         json.put("code", inputCode)
 
-        json.put("language", "java")
+        json.put("language", selectedLanguage)
         json.put("input", "")
         val client = OkHttpClient()
         Log.d("pt",inputCode+selectedLanguage)
@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         binding.mySpinner.adapter = adapter
 
 
+
     }
 
     private fun setImageResource() {
@@ -152,21 +153,25 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         binding.imageView.setImageResource(R.drawable.c_icn)
-                        binding.tvEditor.setText(ch.highlightCCode(text))
+                       // binding.tvEditor.setText(ch.highlightCCode(text))
+                        selectedLanguage="c"
 
                         binding.tvEditor.setText(ch.highlightCode(text, C_KEYWORDS))
                     }
                     1 -> {
                         binding.imageView.setImageResource(R.drawable.cpp_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, CPP_KEYWORDS))
+                        selectedLanguage="cpp"
                     }
                     2 -> {
                         binding.imageView.setImageResource(R.drawable.java_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, JAVA_KEYWORDS))
+                        selectedLanguage="java"
                     }
                     3 -> {
                         binding.imageView.setImageResource(R.drawable.python_icn)
                         binding.tvEditor.setText(ch.highlightCode(text, PYTHON_KEYWORDS))
+                        selectedLanguage="py"
                     }
                 }
             }
