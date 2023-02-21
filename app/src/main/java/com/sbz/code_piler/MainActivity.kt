@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             .setContentView(this, R.layout.activity_main)
         // editText = findViewById(R.id.tv_editor)
         btn = findViewById(R.id.btn_run)
-
+        hideNavAndStatusBar()
         setSpinnerItem()
         setImageResource()
         //selectLanguageIndex()
@@ -104,25 +104,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun selectLanguageIndex() {
-
-        binding.mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-              languageIndex = parent?.getItemIdAtPosition(position).toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-        }
-
-        setLanguage(languageIndex)
+    @Suppress("DEPRECATION")
+    fun hideNavAndStatusBar(){
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 
     private fun setLanguage(languageIndex: String) {
