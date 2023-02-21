@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.DataBindingUtil
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.sbz.code_piler.DataModel.ApiResponse
@@ -50,10 +51,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun getApiResponse() {
         val textInputEditText = findViewById<TextInputEditText>(R.id.tv_editor)
+        val loadingAnimation = findViewById<LottieAnimationView>(R.id.loadingAnimation)
+        loadingAnimation.setAnimation(R.raw.loading)
+        loadingAnimation.visibility = View.VISIBLE
+        loadingAnimation.playAnimation()
+
+
         val inputCode = textInputEditText.text.toString()
         val json = JSONObject()
         json.put("code", inputCode)
-
         json.put("language", selectedLanguage)
         json.put("input", "")
         val client = OkHttpClient()
@@ -88,6 +94,8 @@ class MainActivity : AppCompatActivity() {
                         val mOutput = apiResponse.output
                         Log.d("mOutput",mOutput)
                         etOutput.text = mOutput
+                        loadingAnimation.visibility = View.GONE
+                        etOutput.visibility = View.VISIBLE
 
                     }
                 }
