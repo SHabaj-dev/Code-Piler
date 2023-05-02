@@ -1,12 +1,14 @@
 package com.sbz.code_piler
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.Window
 import android.view.animation.AlphaAnimation
-import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import com.sbz.code_piler.databinding.ActivitySplashScreenBinding
 
@@ -30,7 +32,12 @@ class SplashScreen : AppCompatActivity() {
     }
 
     @Suppress("DEPRECATION")
-    fun hideNavAndStatusBar(){
+    fun hideNavAndStatusBar() {
+        val window: Window = window
+        val decorView: View = window.decorView
+        val wic = WindowInsetsControllerCompat(window, decorView)
+        wic.isAppearanceLightStatusBars = true
+        window.statusBarColor = Color.WHITE
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }

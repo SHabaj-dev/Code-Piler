@@ -1,14 +1,17 @@
 package com.sbz.code_piler
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.textfield.TextInputEditText
@@ -37,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil
             .setContentView(this, R.layout.activity_main)
         // editText = findViewById(R.id.tv_editor)
+        val window: Window = window
+        val decorView: View = window.decorView
+        val wic = WindowInsetsControllerCompat(window, decorView)
+        wic.isAppearanceLightStatusBars = true
+        window.statusBarColor = Color.WHITE
         btn = findViewById(R.id.btn_run)
         hideNavAndStatusBar()
         setSpinnerItem()
